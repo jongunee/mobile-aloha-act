@@ -1,0 +1,260 @@
+[
+    {
+        "index": 0,
+        "name": "box_joint",
+        "type": 0,
+        "range": null
+    },
+    {
+        "index": 1,
+        "name": "world_j",
+        "type": 0,
+        "range": null
+    },
+    {
+        "index": 2,
+        "name": "right_wheel",
+        "type": 3,
+        "range": null
+    },
+    {
+        "index": 3,
+        "name": "left_wheel",
+        "type": 3,
+        "range": null
+    },
+    {
+        "index": 4,
+        "name": "torso_0",
+        "type": 3,
+        "range": [
+            -0.261799388,
+            0.261799388
+        ]
+    },
+    {
+        "index": 5,
+        "name": "torso_1",
+        "type": 3,
+        "range": [
+            -0.523598776,
+            1.570796327
+        ]
+    },
+    {
+        "index": 6,
+        "name": "torso_2",
+        "type": 3,
+        "range": [
+            -2.617993878,
+            1.570796327
+        ]
+    },
+    {
+        "index": 7,
+        "name": "torso_3",
+        "type": 3,
+        "range": [
+            -0.785398163,
+            1.570796327
+        ]
+    },
+    {
+        "index": 8,
+        "name": "torso_4",
+        "type": 3,
+        "range": [
+            -0.523598776,
+            0.523598776
+        ]
+    },
+    {
+        "index": 9,
+        "name": "torso_5",
+        "type": 3,
+        "range": [
+            -2.35619449,
+            2.35619449
+        ]
+    },
+    {
+        "index": 10,
+        "name": "right_arm_0",
+        "type": 3,
+        "range": [
+            -3.141592654,
+            3.141592654
+        ]
+    },
+    {
+        "index": 11,
+        "name": "right_arm_1",
+        "type": 3,
+        "range": [
+            -3.141592654,
+            0.017453293
+        ]
+    },
+    {
+        "index": 12,
+        "name": "right_arm_2",
+        "type": 3,
+        "range": [
+            -3.141592654,
+            3.141592654
+        ]
+    },
+    {
+        "index": 13,
+        "name": "right_arm_3",
+        "type": 3,
+        "range": [
+            -2.617993878,
+            0.017453293
+        ]
+    },
+    {
+        "index": 14,
+        "name": "right_arm_4",
+        "type": 3,
+        "range": [
+            -3.141592654,
+            3.141592654
+        ]
+    },
+    {
+        "index": 15,
+        "name": "right_arm_5",
+        "type": 3,
+        "range": [
+            -1.570796327,
+            1.919862177
+        ]
+    },
+    {
+        "index": 16,
+        "name": "right_arm_6",
+        "type": 3,
+        "range": [
+            -2.792526803,
+            2.792526803
+        ]
+    },
+    {
+        "index": 17,
+        "name": "gripper_finger_r1",
+        "type": 2,
+        "range": [
+            -0.05,
+            0.0
+        ]
+    },
+    {
+        "index": 18,
+        "name": "gripper_finger_r2",
+        "type": 2,
+        "range": [
+            0.0,
+            0.05
+        ]
+    },
+    {
+        "index": 19,
+        "name": "left_arm_0",
+        "type": 3,
+        "range": [
+            -3.141592654,
+            3.141592654
+        ]
+    },
+    {
+        "index": 20,
+        "name": "left_arm_1",
+        "type": 3,
+        "range": [
+            -0.017453293,
+            3.141592654
+        ]
+    },
+    {
+        "index": 21,
+        "name": "left_arm_2",
+        "type": 3,
+        "range": [
+            -3.141592654,
+            3.141592654
+        ]
+    },
+    {
+        "index": 22,
+        "name": "left_arm_3",
+        "type": 3,
+        "range": [
+            -2.617993878,
+            0.017453293
+        ]
+    },
+    {
+        "index": 23,
+        "name": "left_arm_4",
+        "type": 3,
+        "range": [
+            -3.141592654,
+            3.141592654
+        ]
+    },
+    {
+        "index": 24,
+        "name": "left_arm_5",
+        "type": 3,
+        "range": [
+            -1.570796327,
+            1.919862177
+        ]
+    },
+    {
+        "index": 25,
+        "name": "left_arm_6",
+        "type": 3,
+        "range": [
+            -2.792526803,
+            2.792526803
+        ]
+    },
+    {
+        "index": 26,
+        "name": "gripper_finger_l1",
+        "type": 2,
+        "range": [
+            -0.05,
+            0.0
+        ]
+    },
+    {
+        "index": 27,
+        "name": "gripper_finger_l2",
+        "type": 2,
+        "range": [
+            0.0,
+            0.05
+        ]
+    },
+    {
+        "index": 28,
+        "name": "head_0",
+        "type": 3,
+        "range": [
+            -0.523,
+            0.523
+        ]
+    },
+    {
+        "index": 29,
+        "name": "head_1",
+        "type": 3,
+        "range": [
+            -0.35,
+            1.57
+        ]
+    }
+]

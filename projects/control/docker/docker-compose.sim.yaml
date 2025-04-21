@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  rby1-sim:
+    image: rby1-custom:v1.0
+    environment:
+      - DISPLAY=${DISPLAY}
+      # - LIBGL_ALWAYS_INDIRECT=1
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    network_mode: host
+    # ports:
+    #   - "50051:50051"
