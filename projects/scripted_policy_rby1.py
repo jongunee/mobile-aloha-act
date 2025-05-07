@@ -133,7 +133,8 @@ class PickAndTransferPolicy:
 
         # Right Trajectory
         self.right_trajectory = [
-            {"t": 0, "xyz": init_mocap_pose_right[:3], "quat": init_mocap_pose_right[3:], "gripper": 0},
+            {"t": 0, "xyz": init_mocap_pose_right[:3], "quat": init_mocap_pose_right[3:], "gripper": 10},
+            {"t": 10, "xyz": init_mocap_pose_right[:3], "quat": init_mocap_pose_right[3:], "gripper": 10},
             {"t": 30, "xyz": box_xyz + np.array([0.06, 0, 0.1]), "quat": gripper_pick_quat, "gripper": 10},
             {"t": 60, "xyz": box_xyz + np.array([0.06, 0, 0.05]), "quat": gripper_pick_quat, "gripper": 10},
             {"t": 80, "xyz": box_xyz + np.array([0.06, 0, 0.05]), "quat": gripper_pick_quat, "gripper": -10},

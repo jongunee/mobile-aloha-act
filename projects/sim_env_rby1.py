@@ -89,7 +89,7 @@ class RBY1Task(base.Task):
         np.copyto(physics.data.mocap_pos[4], left_xyz)
         np.copyto(physics.data.mocap_quat[4], left_quat)
 
-        # ✅ (2) 26차원 ctrl 배열 준비: 0으로 초기화 후 그리퍼 2개만 값을 넣기
+        # ✅ (2) 26차원 ctrl 배열 준비: 0으로 초기화 후 그리퍼 2개만 값을 넣기 - 액츄에이터 번호
         ctrl_26 = np.zeros(26)  
         ctrl_26[24] = right_gripper
         ctrl_26[25] = left_gripper
