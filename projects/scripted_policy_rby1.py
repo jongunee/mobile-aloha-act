@@ -31,12 +31,12 @@ class PickAndTransferPolicy:
         next_quat = next_waypoint['quat']
         next_grip = next_waypoint['gripper']
 
-        # ✅ Quaternion 보간을 Slerp로 변경
+        # Quaternion 보간을 Slerp로 변경
         key_rots = R.from_quat([curr_quat, next_quat])
         slerp = Slerp([0, 1], key_rots)
         quat = slerp(alpha).as_quat()
 
-        # ✅ XYZ는 기존 선형 보간 유지
+        # XYZ는 기존 선형 보간 유지
         xyz = curr_xyz + (next_xyz - curr_xyz) * alpha
         gripper = curr_grip + (next_grip - curr_grip) * alpha
 

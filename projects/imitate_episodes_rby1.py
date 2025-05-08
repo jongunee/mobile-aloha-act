@@ -82,11 +82,11 @@ def main(args):
     }
 
     if is_eval:
-        # ✅ 평가 모드 (학습 X)
+        # 평가 모드 (학습 X)
         eval_bc(config, ckpt_name='policy_best.ckpt', save_episode=False, num_rollouts=1)
 
     else:
-        # ✅ 학습 모드
+        # 학습 모드
         from constants_rby1 import SIM_TASK_CONFIGS
         task_config = SIM_TASK_CONFIGS[task_name]
         dataset_dir = task_config['dataset_dir']

@@ -32,9 +32,11 @@ def main(args):
     if not os.path.isdir(dataset_dir):
         os.makedirs(dataset_dir, exist_ok=True)
 
+    # Simulation 환경 생성성
     env = make_sim_env(task_name)
     policy = PickAndTransferPolicy(inject_noise=False)
 
+    # 시각화 설정시시
     if onscreen_render:
         plt.ion()
         fig, ax = plt.subplots(figsize=(10, 10))
@@ -48,6 +50,8 @@ def main(args):
     for episode_idx in range(num_episodes):
         print(f"\n=== Episode {episode_idx} 시작 ===")
         logging.info(f"Episode {episode_idx} 시작")
+        
+        # 박스 초기 위치 설정
         BOX_POSE[0] = random_box_pose()
         # BOX_POSE[0] = np.array([0.2, 0.3, 0.94, 1, 0, 0, 0])
 
@@ -57,13 +61,13 @@ def main(args):
         print("[DEBUG] 박스 위치:", box_pos)
         logging.info(f"초기 박스 위치: {box_pos}")
 
-        camera_names = ['top']
-
+        # 데이터로 저장할 요소들
         data_dict = {
             'observations/qpos': [],
             'observations/qvel': [],
             'action': [],
         }
+        camera_names = ['top']
         for cam_name in camera_names:
             data_dict[f'observations/images/{cam_name}'] = []
 

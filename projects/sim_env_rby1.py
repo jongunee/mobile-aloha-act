@@ -17,9 +17,9 @@ def make_sim_env(task_name):
     환경 생성: RBY1 로봇 시뮬레이션 (조인트 제어 방식)
     """
     if 'sim_transfer_cube' in task_name:
-        xml_path = os.path.join(XML_DIR, f'rby1.xml')  # ✅ RBY1 환경 사용
+        xml_path = os.path.join(XML_DIR, f'rby1.xml')  # RBY1 환경 사용
         physics = mujoco.Physics.from_xml_path(xml_path)
-        task = TransferCubeTask(random=False)  # ✅ 새로운 Task 클래스
+        task = TransferCubeTask(random=False)  # 새로운 Task 클래스
         env = control.Environment(physics, task, time_limit=20, control_timestep=DT,
                                   n_sub_steps=None, flat_observation=False)
     else:
@@ -59,11 +59,11 @@ class RBY1Task(base.Task):
 
     def get_qpos(self, physics):
         """로봇의 조인트 위치를 가져옴"""
-        return physics.data.qpos.copy()  # ✅ 모든 qpos 반환
+        return physics.data.qpos.copy()  # 모든 qpos 반환
 
     def get_qvel(self, physics):
         """로봇의 조인트 속도를 가져옴"""
-        return physics.data.qvel.copy()  # ✅ 모든 qvel 반환
+        return physics.data.qvel.copy()  # 모든 qvel 반환
 
     def before_step(self, action, physics):
         self._step_count += 1
@@ -83,28 +83,28 @@ class RBY1Task(base.Task):
         right_gripper = action[14]
         left_gripper = action[15]
 
-        # ✅ (1) Mocap을 통해 엔드이펙터 위치 제어
+        # (1) Mocap을 통해 엔드이펙터 위치 제어
         np.copyto(physics.data.mocap_pos[3], right_xyz)
         np.copyto(physics.data.mocap_quat[3], right_quat)
         np.copyto(physics.data.mocap_pos[4], left_xyz)
         np.copyto(physics.data.mocap_quat[4], left_quat)
 
-        # ✅ (2) 26차원 ctrl 배열 준비: 0으로 초기화 후 그리퍼 2개만 값을 넣기 - 액츄에이터 번호
+        # (2) 26차원 ctrl 배열 준비: 0으로 초기화 후 그리퍼 2개만 값을 넣기 - 액츄에이터 번호
         ctrl_26 = np.zeros(26)  
         ctrl_26[24] = right_gripper
         ctrl_26[25] = left_gripper
 
-        # ✅ (3) 이제 ctrl_26을 physics.data.ctrl에 복사
+        # (3) 이제 ctrl_26을 physics.data.ctrl에 복사
         np.copyto(physics.data.ctrl, ctrl_26)
 
-        # ✅ (4) 박스-테이블 접촉 여부 확인
+        # (4) 박스-테이블 접촉 여부 확인
         # box_touching_table = is_contacted(physics, "red_box", "tabletop")
 
-        # ✅ 디버깅 메시지 출력
+        # 디버깅 메시지 출력
         # print(f"[DEBUG] Step: {self._step_count}")
-        # print(f"[DEBUG] 박스-테이블 접촉 상태: {'✅ 붙어 있음' if box_touching_table else '❌ 떨어짐'}")
+        # print(f"[DEBUG] 박스-테이블 접촉 상태: {'붙어 있음' if box_touching_table else '❌ 떨어짐'}")
 
-        # ✅ 박스가 테이블에서 떨어졌으면 경고 메시지
+        # 박스가 테이블에서 떨어졌으면 경고 메시지
         # if not box_touching_table:
         #     print("[⚠ 경고] 박스가 테이블에서 떨어졌음!")
 
@@ -143,11 +143,11 @@ class RBY1Task(base.Task):
         obs = collections.OrderedDict()
         obs['qpos'] = self.get_qpos(physics)
         obs['qvel'] = self.get_qvel(physics)
-        obs['env_state'] = self.get_env_state(physics)  # ✅ 'env_state' 추가
+        obs['env_state'] = self.get_env_state(physics)  # 'env_state' 추가
         obs['images'] = dict()
         obs['images']['top'] = physics.render(height=480, width=640, camera_id='top')
 
-        # ✅ 'mocap_pose' 추가
+        # 'mocap_pose' 추가
         obs['mocap_pose_right'] = np.concatenate([physics.data.mocap_pos[3], physics.data.mocap_quat[3]]).copy()
         obs['mocap_pose_left'] = np.concatenate([physics.data.mocap_pos[4], physics.data.mocap_quat[4]]).copy()
 
@@ -155,7 +155,7 @@ class RBY1Task(base.Task):
 
     @staticmethod
     def get_env_state(physics):
-        # ✅ 박스의 pose (위치 + 회전) 가져오기
+        # 박스의 pose (위치 + 회전) 가져오기
         box_id = physics.model.name2id('box', 'body')
         box_pose = physics.data.xpos[box_id]  # (x, y, z, qx, qy, qz, qw)
         # print('box_id:', box_id)
@@ -206,11 +206,11 @@ class TransferCubeTask(RBY1Task):
         with physics.reset_context():
             self._step_count = 0
             # physics.data.ctrl[:] = 0
-            # ✅ 모든 ctrl 0으로 초기화
+            # 모든 ctrl 0으로 초기화
             np.copyto(physics.data.ctrl, np.zeros_like(physics.data.ctrl))
             # physics.data.qpos[:] = physics.model.qpos0
             
-            # ✅ qpos 초기화 (로봇 관절 상태)
+            # qpos 초기화 (로봇 관절 상태)
             physics.named.data.qpos['right_arm_0'] = -45 * D2R
             physics.named.data.qpos['right_arm_1'] = -45 * D2R
             physics.named.data.qpos['right_arm_2'] = 30  * D2R
@@ -227,14 +227,14 @@ class TransferCubeTask(RBY1Task):
             physics.named.data.qpos['left_arm_5'] = -20 * D2R
             physics.named.data.qpos['left_arm_6'] = 0   * D2R
 
-            # # ✅ mocap 초기 위치 강제 설정
+            # # mocap 초기 위치 강제 설정
             physics.data.mocap_pos[3] = np.array([0.3, 0.2, 1.2])  # 오른손 mocap 위치
             physics.data.mocap_quat[3] = np.array([1, 0, 0, 0])  # 기본 quaternion
 
             physics.data.mocap_pos[4] = np.array([-0.3, 0.2, 1.2])  # 왼손 mocap 위치
             physics.data.mocap_quat[4] = np.array([1, 0, 0, 0])
 
-            # ✅ 박스 위치 설정
+            # 박스 위치 설정
             # assert BOX_POSE[0] is not None
             # box_pose = BOX_POSE[0]
             if BOX_POSE[0] is not None:
@@ -244,10 +244,10 @@ class TransferCubeTask(RBY1Task):
             print("[DEBUG] Initial box velocity:", physics.named.data.qvel['red_box_joint'])
 
 
-            # ✅ 초기 박스-테이블 접촉 여부 확인
+            # 초기 박스-테이블 접촉 여부 확인
             box_touching_table = is_contacted(physics, "red_box", "tabletop")
 
-            print(f"[DEBUG] 박스 초기 접촉 상태: {'✅ 테이블 위' if box_touching_table else '❌ 공중에 떠 있음'}")
+            print(f"[DEBUG] 박스 초기 접촉 상태: {'테이블 위' if box_touching_table else '❌ 공중에 떠 있음'}")
 
         super().initialize_episode(physics)
         # print("[DEBUG] 🟢 initialize_episode (mocap pos 설정 완료)")

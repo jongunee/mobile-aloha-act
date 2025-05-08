@@ -1,7 +1,7 @@
 import numpy as np
 import collections
 import os
-from constants_rby1 import DT, XML_DIR, START_QPOS_RBY1  # ✅ RBY1 관련 상수
+from constants_rby1 import DT, XML_DIR, START_QPOS_RBY1  # RBY1 관련 상수
 from dm_control import mujoco
 from dm_control.rl import control
 from dm_control.suite import base
@@ -16,9 +16,9 @@ def make_ee_sim_env(task_name):
     Environment for RBY1 robot manipulation, with end-effector control.
     """
     if 'sim_transfer_cube' in task_name:
-        xml_path = os.path.join(XML_DIR, f'rby1.xml')  # ✅ RBY1 환경 사용
+        xml_path = os.path.join(XML_DIR, f'rby1.xml')  # RBY1 환경 사용
         physics = mujoco.Physics.from_xml_path(xml_path)
-        task = TransferCubeEETask(random=False)  # ✅ 새로운 Task 클래스 사용
+        task = TransferCubeEETask(random=False)  # 새로운 Task 클래스 사용
         env = control.Environment(physics, task, time_limit=20, control_timestep=DT,
                                   n_sub_steps=None, flat_observation=False)
     else:
@@ -26,7 +26,7 @@ def make_ee_sim_env(task_name):
     return env
 
 
-class RBY1EETask(base.Task):  # ✅ 새로운 Task 베이스 클래스
+class RBY1EETask(base.Task):  # 새로운 Task 베이스 클래스
     def __init__(self, random=None):
         super().__init__(random=random)
 
@@ -43,13 +43,13 @@ class RBY1EETask(base.Task):  # ✅ 새로운 Task 베이스 클래스
         gripper_left = action[14]
         gripper_right = action[15]
 
-        # ✅ 엔드이펙터 위치 직접 이동
+        # 엔드이펙터 위치 직접 이동
         np.copyto(physics.data.mocap_pos[0], left_xyz)
         np.copyto(physics.data.mocap_quat[0], left_quat)
         np.copyto(physics.data.mocap_pos[1], right_xyz)
         np.copyto(physics.data.mocap_quat[1], right_quat)
 
-        # ✅ 그리퍼 컨트롤
+        # 그리퍼 컨트롤
         np.copyto(physics.data.ctrl, np.array([gripper_left, -gripper_left, gripper_right, -gripper_right]))
 
     def initialize_episode(self, physics):
@@ -58,16 +58,16 @@ class RBY1EETask(base.Task):  # ✅ 새로운 Task 베이스 클래스
         - 초기 box 위치 설정
         """
         with physics.reset_context():
-            physics.named.data.qpos[:len(START_QPOS_RBY1)] = START_QPOS_RBY1  # ✅ 초기 자세 설정
-            np.copyto(physics.data.ctrl, np.zeros_like(physics.data.ctrl))  # ✅ 그리퍼 초기화
+            physics.named.data.qpos[:len(START_QPOS_RBY1)] = START_QPOS_RBY1  # 초기 자세 설정
+            np.copyto(physics.data.ctrl, np.zeros_like(physics.data.ctrl))  # 그리퍼 초기화
 
-            # ✅ 초기 엔드이펙터 위치 설정
+            # 초기 엔드이펙터 위치 설정
             np.copyto(physics.data.mocap_pos[0], [-0.3, 0.5, 0.3])  # 왼쪽 팔
             np.copyto(physics.data.mocap_pos[1], [0.3, 0.5, 0.3])   # 오른쪽 팔
             np.copyto(physics.data.mocap_quat[0], [1, 0, 0, 0])
             np.copyto(physics.data.mocap_quat[1], [1, 0, 0, 0])
 
-            # ✅ 박스 위치 랜덤 초기화
+            # 박스 위치 랜덤 초기화
             cube_pose = sample_box_pose()
             box_start_idx = physics.model.name2id('red_box_joint', 'joint')
             np.copyto(physics.data.qpos[box_start_idx : box_start_idx + 7], cube_pose)
@@ -92,7 +92,7 @@ class RBY1EETask(base.Task):  # ✅ 새로운 Task 베이스 클래스
         return obs
 
 
-class TransferCubeEETask(RBY1EETask):  # ✅ TransferCubeTask 정의
+class TransferCubeEETask(RBY1EETask):  # TransferCubeTask 정의
     def __init__(self, random=None):
         super().__init__(random=random)
         self.max_reward = 4
