@@ -12,7 +12,7 @@
 ├── Dockerfile #도커 파일
 ├── docker-compose.yml #도커 컴포즈 파일
 ├── app/
-| ├── assets #시뮬레이터 UI 이미지 리소스
+│ ├── assets #시뮬레이터 UI 이미지 리소스
 │ ├── models #Mujoco 로봇 모델 파일
 │ ├── app_main #실행 파일
 │ └── libmujoco.so.3.2.0 #Mujoco 시뮬레이션 엔진 라이브러리
