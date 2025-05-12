@@ -68,7 +68,7 @@ def send_robot_command(robot, target_qpos, base_velocity):
     handler = robot.send_command(rc)
     result = handler.get()  # 기다림
     if result.finish_code != RobotCommandFeedback.FinishCode.Ok:
-        print("\u274c Command failed!")
+        print("Command failed!")
         return False
     return True
 
@@ -79,9 +79,9 @@ def main(args):
     global latest_state
 
     robot = create_robot_a(args.address)
-    assert robot.connect(), "\u274c Failed to connect to robot."
+    assert robot.connect(), "Failed to connect to robot."
     robot.start_state_update(cb, 0.05)
-    print("\u2705 Connected to robot.")
+    print("Connected to robot.")
 
     robot.power_on(args.device)
     robot.servo_on(args.servo)
@@ -90,7 +90,7 @@ def main(args):
     with open(args.stats_path, 'rb') as f:
         stats = pickle.load(f)
     policy = load_policy(args.ckpt_path, args.policy_config)
-    print("\u2705 Policy loaded.")
+    print("Policy loaded.")
 
     time.sleep(1.0)
 
@@ -127,7 +127,7 @@ def main(args):
 
         time.sleep(2.5)
 
-    print("\u2705 Policy 실행 완료.")
+    print("Policy 실행 완료.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

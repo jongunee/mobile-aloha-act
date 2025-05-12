@@ -57,6 +57,7 @@ def main(args):
 
         ts = env.reset()
         box_pos = np.array(ts.observation['env_state'])
+        #로봇의 궤적 생성
         policy.generate_trajectory(ts)
         print("[DEBUG] 박스 위치:", box_pos)
         logging.info(f"초기 박스 위치: {box_pos}")
@@ -128,7 +129,7 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--task_name', type=str, default='sim_transfer_cube', help='Task name')
-    parser.add_argument('--dataset_dir', type=str, default='/mnt/storage/jwpark/mobile_aloha/datasets/rby1_transfer_cam_top_open_start_no_noise', help='Dataset saving directory')
+    parser.add_argument('--dataset_dir', type=str, default='/mnt/storage/jwpark/mobile_aloha/datasets/test', help='Dataset saving directory')
     parser.add_argument('--num_episodes', type=int, default=100, help='Number of episodes')
     parser.add_argument('--onscreen_render', action='store_true', default=0, help='Enable on-screen rendering')
 

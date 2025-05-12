@@ -13,6 +13,10 @@
 - `history`: 백업 및 테스트 했던 코드들이 담긴 폴더
 - `control`: 도커로 띄운 시뮬레이터 속 로봇 제어하는 테스트 코드들이 담긴 폴더
 
+### Python 환경
+
+- Conda 환경 참조: mobile-aloha(https://github.com/MarkFzp/act-plus-plus)
+
 ### 데이터 수집
 
 mujoco 기반 시뮬레이션 환경에서 `models` 경로에 있는 RB-Y1 모델 파일을 불러와 동작을 시뮬레이션한다. 
