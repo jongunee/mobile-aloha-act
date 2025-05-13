@@ -73,3 +73,23 @@ sudo apt install -y docker docker-compose-v2
     ```bash
     xhost +
     ```
+
+### Docker Shell 접속 방법
+
+1. 실행 중인 컨테이너 확인
+
+    ```bash
+    docker ps
+    ```
+
+    출력 예시
+    ```
+    CONTAINER ID   IMAGE                              COMMAND                  CREATED        STATUS         PORTS     NAMES
+    0ebd85a8ce99   rainbowroboticsofficial/rby1-sim   "/bin/bash -c ./app_…"   2 months ago   Up 2 minutes             rby1-sdk-rby1-sim-1
+    ```
+
+2. Shell 접속
+
+    ```bash
+    docker exec -it 0ebd85a8ce99 /bin/bash
+    ```

@@ -84,3 +84,29 @@ python imitate_episodes.py
 | `--vq_class`        | `int`  | VQ dictionary size (클래스 개수)             |
 | `--vq_dim`          | `int`  | 각 VQ embedding의 차원                      |
 | `--no_encoder`      | `bool` | encoder를 사용하지 않고 random latent를 사용할지 여부 |
+
+### 학습된 모델 렌더링
+
+1. 도커 시뮬레이터 켜기
+
+    ```bash
+    cd docker 
+    docker compose -f docker-compose.sim.yaml up
+    ```
+
+2. RB-Y1 초기 포즈 잡기
+
+    ```bash
+    python control/control_rby1.py 
+    ```
+
+3. 카메라 켜기
+    ```bash
+    python camera_server.py
+    ```
+
+4. 렌더링
+
+    ```bash
+    python imitation_model.py 
+    ```

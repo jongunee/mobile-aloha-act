@@ -37,8 +37,10 @@ def init_joint_position_command(robot):
     # Set specific joint positions
     # q_joint_right_arm[0] = -90 * D2R
     # q_joint_left_arm[1] = 90 * D2R
-    q_joint_right_arm = np.array([-45, -45, 30, -45, 20, -20, 0]) * D2R
-    q_joint_left_arm = np.array([-45, 45, -30, -45, -20, -20, 0]) * D2R
+    # q_joint_right_arm = np.array([-45, -45, 30, -45, 20, -20, 0]) * D2R
+    q_joint_right_arm = np.array([-120, -90, 120, -90, 60, -30, -30]) * D2R
+    # q_joint_left_arm = np.array([-45, 45, -30, -45, -20, -20, 0]) * D2R
+    q_joint_left_arm = np.array([-120, 90, -120, -90, -60, -30, 30]) * D2R
 
     rc = RobotCommandBuilder().set_command(
         ComponentBasedCommandBuilder().set_body_command(
@@ -72,7 +74,9 @@ def init_joint_position_command(robot):
 def mobility_command(robot):
     print("mobility command")
 
+    # q_joint_left_wheel = -1.5
     q_joint_left_wheel = -1.5
+    # q_joint_right_wheel = -1.5
     q_joint_right_wheel = -1.5
 
     rc = RobotCommandBuilder().set_command(
